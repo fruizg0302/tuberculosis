@@ -1,0 +1,117 @@
+<%= form_for @registro, :validate => true do |f| %>
+  <% if @registro.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@registro.errors.count, "errores") %> Se presentaron los siguientes errores:</h2>
+
+      <ul>
+      <% @registro.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br />
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label :apellido_paterno %><br />
+    <%= f.text_field :apellido_paterno %>
+  </div>
+  <div class="field">
+    <%= f.label :apellido_materno %><br />
+    <%= f.text_field :apellido_materno %>
+  </div>
+  <div class="field">
+    <%= f.label "Correo Electrónico" %><br />
+    <%= f.text_field :email, :value => current_user.email, :readonly => true %>
+  </div>
+  <div class="field">
+    <%= f.label "Registro Federal de Contribuyentes (RFC)" %><br />
+    <%= f.text_field :rfc %>
+  </div>
+  <div class="field">
+    <% @paises = Nationality.all %>
+    <%= f.label "País de origen" %><br />
+    <%= f.select :nationality_id, @paises.collect{ |e| [e.nationality, e.id] }%>
+  </div>
+  <div class="field">
+
+    <% @profesion = Profession.all %>
+    <%= f.label "Profesión" %><br />
+    <%= f.select :profession_id, @profesion.collect{ |e| [e.profession, e.id] }%>
+
+  </div>
+  <div class="field">
+    <% @posgrado = Posgrado.all %>
+    <%= f.label "Posgrado" %><br />
+    <%= f.select :posgrado_id, @posgrado.collect{ |e| [e.posgrado, e.id] }%>
+  </div>
+
+    <div class="field">
+      <% @workshop = Workshop.availability_of_group %>
+      <%= f.label "Talleres" %><br />
+      <%= f.select :workshop_id, @workshop.collect{ |e| [e.workshop, e.id] }%>
+    </div>
+
+    <div class="field">
+      <%= f.label "Número de deposito en cuenta bancaria" %><br />
+      <%= f.text_field :no_deposito_cuenta_bancaria %>
+    </div>
+
+    <div class="field">
+      <% @state = State.all %>
+      <%= f.label "Estado" %><br />
+      <%= f.select :state_id, @state.collect{ |e| [e.state, e.id] }%>
+    </div>
+
+
+
+    <div class="field">
+      <%= f.label "Es personal del hospital general" %><br />
+      <%= f.select :hospital_general, options_for_select([
+                                                         ["No", "false"],
+                                                         ["Si", "true"]
+
+                                                 ]),{}, :onchange => "test();" %>
+
+    </div>
+
+    <div class="field" style="display: none;" id="div_servicio_id">
+      <% @service = Service.all %>
+      <%= f.label "En qué servicio" %><br />
+      <%= f.select :service_id, @service.collect{ |e| [e.service, e.id] }, :style=>"display:none", :html => { :class => "class_name_here"}%>
+    </div>
+
+
+    <div class="field">
+      <% @inst = Institution.all %>
+      <%= f.label "Institución" %><br />
+      <%= f.select :institution_id, @inst.collect{ |e| [e.institution, e.id] }%>
+    </div>
+
+
+
+
+    <div class="field">
+      <%= f.label "¿Ha asistido anteriormente a este curso?" %><br />
+      <%= f.select :attendance, options_for_select([
+                                                                 ["Si", "true"],
+                                                                 ["No", "false"]
+
+                                                         ]) %>
+      <br>
+      <br>
+
+    </div>
+
+    <div class="field">
+      <%= f.number_field :user_id, :value => current_user.id, :readonly => true  %>
+    </div>
+
+
+  <div class="actions">
+    <%= f.submit "Enviar" %>
+  </div>
+<% end %>

@@ -1,0 +1,10 @@
+<footer class="footer">
+  
+  <nav>
+    <ul>
+      <% if user_signed_in? %>
+          <p>Hola <%= current_user.email %>.</p>
+      <% end %>
+    </ul>
+  </nav>
+</footer>

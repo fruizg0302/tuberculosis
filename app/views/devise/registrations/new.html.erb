@@ -1,0 +1,19 @@
+<h2>Registrate</h2>
+<h4>Tu contraseña debe ser de mínimo 8 caracteres</h4>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
+
+  <div><%= f.label "Password" %><br />
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label "Password nuevamente" %><br />
+  <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.submit "Enviar" %></div>
+<% end %>
+
+<%= render "devise/shared/links" %>

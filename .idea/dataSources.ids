@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Rails RegistroTB_Rails3: development" uuid="b04eda2e-30b2-45cc-9a45-69aaeb4c053b">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails RegistroTB_Rails3: test" uuid="4a7fabc5-58dc-4baf-ba9c-458c42ddad6d">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+</component>

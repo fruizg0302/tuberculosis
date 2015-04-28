@@ -1,0 +1,72 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Id de registro:</b>
+  <%= @registro.id %>
+</p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @registro.nombre %>
+</p>
+
+<p>
+  <b>Apellido paterno:</b>
+  <%= @registro.apellido_paterno %>
+</p>
+
+<p>
+  <b>Apellido materno:</b>
+  <%= @registro.apellido_materno %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @registro.email %>
+</p>
+
+<p>
+  <b>Rfc:</b>
+  <%= @registro.rfc %>
+</p>
+
+<p>
+  <b>País de origen:</b>
+  
+  <%= Nationality.select("nationality").where("id = ?", @registro.nationality_id).to_a.map(&:nationality).join("") %>
+</p>
+
+<p>
+  <b>Estado de procedencia:</b>
+  
+  <%= State.select("state").where("id = ?", @registro.state_id).to_a.map(&:state).join("") %>
+</p>
+
+<p>
+  <b>Profesión:</b>
+  <%= Profession.select("profession").where("id=?", @registro.profession_id).to_a.map(&:profession).join("") %>
+</p>
+
+<p>
+  <b>Posgrado:</b>
+  <%= Posgrado.select("posgrado").where("id=?", @registro.posgrado_id).to_a.map(&:posgrado).join("")%>
+</p>
+
+<p>
+  <b>Taller:</b>
+  <%= Workshop.select("workshop").where("id=?", @registro.workshop_id).to_a.map(&:workshop).join("")%>
+</p>
+
+<p>
+  <b>Institución:</b>
+  <%= Institution.select("institution").where("id=?", @registro.institution_id).to_a.map(&:institution).join("")%>
+</p>
+
+<% if   can? :view_all, @user %>
+   <%= link_to 'Editar', edit_registro_path(@registro) %> |
+<%= link_to 'Volver', registros_path %>
+<%else%>
+ 
+<%= link_to 'Volver', registros_path %>  
+<%end%>
+

@@ -1,0 +1,52 @@
+<h1>Mi registro</h1>
+
+<table class="table">
+  <tr>
+    <th>Nombre</th>
+    <th>Apellido paterno</th>
+    <th>Apellido materno</th>
+    <th>Email</th>
+    <th>RFC</th>
+    <th>País de origen</th>
+    <th>Profesión</th>
+    <th>Posgrado</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @registros.each do |registro| %>
+  <tr>
+    <td><%= registro.nombre %></td>
+    <td><%= registro.apellido_paterno %></td>
+    <td><%= registro.apellido_materno %></td>
+    <td><%= registro.email %></td>
+    <td><%= registro.rfc %></td>
+    <td><%= Nationality.select("nationality").where("id = ?", registro.nationality_id).to_a.map(&:nationality).join("") %></td>
+    <td><%= Profession.select("profession").where("id=?", registro.profession_id).to_a.map(&:profession).join("") %></td>
+    <td><%= Posgrado.select("posgrado").where("id=?", registro.posgrado_id).to_a.map(&:posgrado).join("") %></td>
+
+
+
+<% if   can? :view_all, @user %>
+    <td><%= link_to 'Mostrar', registro %></td>
+    <td><%= link_to 'Editar', edit_registro_path(registro) %></td>
+    <td><%= link_to 'Eliminar', registro, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+<%else%>
+    <td><%= link_to 'Mostrar', registro %></td>
+<%end%>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<% if   can? :view_all, @user %>
+    <%= link_to 'Agrega tu registro', new_registro_path %>
+<%else%>
+    <% if @registros.blank? %>
+    <%= link_to 'Agrega tu registro', new_registro_path %>
+    <%else%>
+    <p>Gracias por tu registro</p>
+    <%end%>
+<%end%>

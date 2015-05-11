@@ -84,6 +84,11 @@
       <%= f.select :service_id, @service.collect{ |e| [e.service, e.id] }, :style=>"display:none", :html => { :class => "class_name_here"}%>
     </div>
 
+    <div class="field">
+      <%= f.label :otro, "Si es otro especifique" %>
+      <%= f.text_field :otro %>
+    </div>
+
 
     <div class="field">
       <% @inst = Institution.all %>
@@ -104,10 +109,6 @@
       <br>
       <br>
 
-    </div>
-
-    <div class="field">
-      <%= f.text_field :otro%>
     </div>
 
     <div class="field">

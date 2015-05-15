@@ -35,7 +35,7 @@
     <td><%= link_to 'Eliminar', registro, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
 <%else%>
     <td><%= link_to 'Mostrar', registro %></td>
-    <td><%= link_to 'asset_path("Gafete.pdf")' %></td>
+    <td><%= link_to 'Descargar gafete', asset_path("Gafete.pdf") %></td>
 <%end%>
   </tr>
 <% end %>
